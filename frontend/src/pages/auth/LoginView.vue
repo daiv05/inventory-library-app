@@ -42,7 +42,7 @@ const { login } = useAuthStore()
 const email = ref('')
 const password = ref('')
 
-const loginLocal = () => {
+const loginLocal = async () => {
   if (!email.value || !password.value) {
     alertToast({
       title: 'Error',
@@ -51,6 +51,6 @@ const loginLocal = () => {
     })
     return
   }
-  login(email.value, password.value)
+  await login(email.value, password.value)
 }
 </script>

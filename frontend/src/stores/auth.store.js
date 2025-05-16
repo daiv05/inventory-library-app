@@ -31,6 +31,15 @@ export const useAuthStore = defineStore('auth', () => {
         })
         return
       }
+      if(!data.accessToken) {
+        setLoading(false)
+        notification.alertToast({
+          title: 'Error!',
+          message: 'No se ha podido iniciar sesión',
+          type: 'error'
+        })
+        return
+      }
       setAuthData(data.accessToken)
       setLoading(false)
       notification.alertToast({
@@ -38,7 +47,7 @@ export const useAuthStore = defineStore('auth', () => {
         message: 'Inicio de sesión exitoso',
         type: 'success'
       })
-      router.push({ name: 'inicio' })
+      await router.push({ name: 'inicio' })
     } catch (error) {
       console.error(error)
       setLoading(false)
