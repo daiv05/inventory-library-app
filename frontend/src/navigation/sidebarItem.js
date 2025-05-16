@@ -16,7 +16,7 @@ const sidebarItem = [
     icon: IconBookCogOutline,
     to: '/productos/listado'
   },
-    {
+  {
     title: 'Categorias',
     icon: IconShapePlusOutline,
     to: '/productos/categorias'

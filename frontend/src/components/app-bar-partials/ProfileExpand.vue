@@ -9,7 +9,9 @@ const { user } = storeToRefs(authStore)
 
 <template>
   <div class="pa-4">
-    <h4 class="mb-n1">Bienvenido, <span class="font-weight-regular">{{ user.username }}</span></h4>
+    <h4 class="mb-n1">
+      Bienvenido, <span class="font-weight-regular">{{ user.username }}</span>
+    </h4>
     <span class="text-subtitle-2 text-medium-emphasis">{{ user.role }}</span>
 
     <v-divider></v-divider>

@@ -34,7 +34,7 @@ export default defineConfig({
           prefix: 'icon'
         })
       ],
-      dts: false,
+      dts: false
     }),
     Unfonts({
       fontsource: {
@@ -63,7 +63,7 @@ export default defineConfig({
         enabled: true
       },
       vueTemplate: true,
-      dts: false,
+      dts: false
     }),
     Icons()
   ],
