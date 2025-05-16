@@ -1,19 +1,47 @@
 version: '3.9'
 
 services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: inventory-mysql
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 5
+    networks:
+      - inventory-network
+    env_file:
+      - ./.env
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - '3307:3306'
+  
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: inventory-backend
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9090/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - inventory-network
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
     working_dir: /var/www/html
     volumes:
       - ./backend:/var/www/html
     depends_on:
       - mysql
     ports:
-      - '9090:80'
+      - '9090:9090'
     env_file:
       - ./backend/.env
 
@@ -23,6 +51,13 @@ services:
       dockerfile: Dockerfile
     container_name: inventory-frontend
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3090"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - inventory-network
     working_dir: /app
     depends_on:
       - backend
@@ -30,20 +65,10 @@ services:
       - '3090:3090'
     env_file:
       - ./frontend/.env
-  
-  mysql:
-    image: mysql:8.0
-    container_name: inventory-mysql
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: inventory_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 
-    volumes:
-      - mysql_data:/var/lib/mysql
-    ports:
-      - '3306:3306'
 
 volumes:
   mysql_data:
+
+networks:
+  inventory-network:
+    driver: bridge

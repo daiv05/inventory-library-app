@@ -5,9 +5,6 @@ RUN apt-get update && apt-get install -y \
     git curl zip unzip libzip-dev libpng-dev libonig-dev libxml2-dev \
     && docker-php-ext-install pdo pdo_mysql zip
 
-# Habilitar mod_rewrite
-RUN a2enmod rewrite
-
 # Copiar archivos y permisos
 COPY . /var/www
 WORKDIR /var/www
