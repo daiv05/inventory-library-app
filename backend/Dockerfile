@@ -6,11 +6,11 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo pdo_mysql zip
 
 # Copiar archivos y permisos
-COPY . /var/www
-WORKDIR /var/www
+COPY . /var/www/backend
+WORKDIR /var/www/backend
 
-RUN chown -R www-data:www-data /var/www \
-    && chmod -R 755 /var/www
+RUN chown -R www-data:www-data /var/www/backend \
+    && chmod -R 755 /var/www/backend
 
 # Instalar Composer
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer

@@ -75,6 +75,10 @@ export default defineConfig({
     extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.vue']
   },
   server: {
-    port: 3090
+    host: '0.0.0.0',
+    port: 3090,
+    watch: {
+      usePolling: true,
+    }
   }
 })

@@ -4,10 +4,6 @@ services:
     image: mysql:8.0
     container_name: inventory-mysql
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      timeout: 5s
-      retries: 5
     networks:
       - inventory-network
     env_file:
@@ -23,19 +19,14 @@ services:
       dockerfile: Dockerfile
     container_name: inventory-backend
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9090/api/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
     networks:
       - inventory-network
     environment:
       - DB_HOST=mysql
       - DB_PORT=3306
-    working_dir: /var/www/html
+    working_dir: /var/www/html/backend
     volumes:
-      - ./backend:/var/www/html
+      - ./backend:/var/www/html/backend
     depends_on:
       - mysql
     ports:
@@ -49,14 +40,11 @@ services:
       dockerfile: Dockerfile
     container_name: inventory-frontend
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3090"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
     networks:
       - inventory-network
     working_dir: /app
+    volumes:
+      - ./frontend:/app
     depends_on:
       - backend
     ports:
