@@ -13,12 +13,9 @@ RUN chown -R www-data:www-data /var/www \
     && chmod -R 755 /var/www
 
 # Instalar Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-RUN composer install
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 RUN chown -R www-data:www-data storage bootstrap/cache
 
 EXPOSE 9090
-
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=9090"]
 
