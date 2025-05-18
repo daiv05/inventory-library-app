@@ -38,8 +38,4 @@ class Producto extends Model
         return $this->hasOne(DetalleProducto::class, 'id_producto');
     }
 
-    public function detalleLibro()
-    {
-        return $this->hasOne(DetalleLibro::class, 'id_producto');
-    }
 }
