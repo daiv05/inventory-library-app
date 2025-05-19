@@ -39,5 +39,3 @@ import { OverlayScrollbarsComponent } from 'overlayscrollbars-vue'
 const { drawer, miniSidebar } = storeToRefs(useAppStore())
 const sidebarMenu = shallowRef(sidebarItems)
 </script>
-
-<style></style>

@@ -3,6 +3,23 @@ import { useAuthStore } from '@/stores/auth.store.js'
 import router from '../router'
 import notification from './notification'
 
+let isRefreshing = false
+
+let refreshSubscribers = []
+
+function onRefreshed(token) {
+  refreshSubscribers.forEach((callback) => {
+    if (typeof callback === 'function') {
+      callback(token)
+    }
+  })
+  refreshSubscribers = []
+}
+
+function addRefreshSubscriber(callback) {
+  refreshSubscribers.push(callback)
+}
+
 const _axios = axios.create({
   baseURL: import.meta.env.VITE_BASE_API_URL,
   timeout: 10000
@@ -25,7 +42,7 @@ _axios.interceptors.response.use(
   (response) => response,
   async (error) => {
     const { token, setAuthData, resetAuthData } = useAuthStore()
-    const { response, request, _message } = error
+    const { response, request, _message, config: originalRequest } = error
     let alertErrorText = ':('
     if (response) {
       if (response.status >= 500) {
@@ -40,8 +57,19 @@ _axios.interceptors.response.use(
         alertErrorText = response.data.message || 'Error en la petición, por favor revisa los datos'
       }
       if (response.status === 401) {
-        if (router.currentRoute.value.name !== 'login') {
+        if (router.currentRoute.value.name !== 'login' || originalRequest._retry) {
           try {
+            if (isRefreshing) {
+              return new Promise((resolve) => {
+                addRefreshSubscriber((token) => {
+                  originalRequest.headers['Authorization'] = 'Bearer ' + token
+                  resolve(_axios(originalRequest))
+                })
+              })
+            }
+            isRefreshing = true
+            originalRequest._retry = true
+
             const responseRefresh = await axios.post(
               `${import.meta.env.VITE_VUE_APP_API_URL}/api/auth/refresh`,
               {},
@@ -54,8 +82,12 @@ _axios.interceptors.response.use(
             if (response.status === 200) {
               const newToken = responseRefresh.data.data.accessToken
               setAuthData(newToken)
-              response.config.headers['Authorization'] = 'Bearer ' + newToken
-              return _axios(response.config)
+              _axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+              onRefreshed(token)
+              isRefreshing = false
+              if (!originalRequest.headers) originalRequest.headers = {}
+              originalRequest.headers['Authorization'] = `Bearer ${token}`
+              return _axios(originalRequest)
             }
           } catch (_error) {
             resetAuthData()

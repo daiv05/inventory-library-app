@@ -50,6 +50,7 @@ class AuthController extends Controller
                 'accessToken' => $newToken,
                 'expires_in' => JWTAuth::factory()->getTTL()
             ];
+            return $this->success('Token refrescado exitosamente', $data, Response::HTTP_OK);
         } catch (JWTException $e) {
             return $this->error('No se pudo refrescar el token. Por favor vuelva a intentar', $e, Response::HTTP_INTERNAL_SERVER_ERROR);
         }

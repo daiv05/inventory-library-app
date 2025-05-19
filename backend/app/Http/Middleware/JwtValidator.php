@@ -30,6 +30,10 @@ class JwtValidator
             if (!$token) {
                 return $this->error('No se ha proporcionado un token de sesión', '', 401);
             }
+            error_log($request->path());
+            if ($request->path() == 'api/auth/refresh') {
+                return $next($request);
+            }
             // Validar el token de sesión
             $user = JWTAuth::setToken($token)->checkOrFail();
             // Si el token es válido, obtener el usuario autenticado

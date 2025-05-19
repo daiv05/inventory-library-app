@@ -3,9 +3,6 @@
     <v-card>
       <v-card-title>
         <v-spacer></v-spacer>
-        <!-- <v-row class="ma-4">
-            <h3>{{ title }}</h3>
-        </v-row> -->
         <v-row class="mt-1" dense>
           <v-col cols="12" class="d-flex justify-end">
             <v-btn icon density="comfortable" flat @click="close">

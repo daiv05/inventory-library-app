@@ -46,28 +46,6 @@ const { user } = useAuthStore()
       </template>
     </v-hover>
     <v-spacer />
-    <!-- <v-menu :close-on-content-click="false">
-      <template #activator="{ props }">
-        <v-hover>
-          <template #default="{ props: propsHover }">
-            <v-btn
-              icon
-              class="text-secondary ml-3"
-              rounded="lg"
-              v-bind="{ ...propsHover, ...props }"
-              size="small"
-              variant="flat"
-            >
-              <icon-mdi-bell-alert-outline style="font-size: 19px" />
-            </v-btn>
-          </template>
-        </v-hover>
-      </template>
-      <v-sheet rounded="lg" width="330" elevation="12">
-        <notification-expand />
-      </v-sheet>
-    </v-menu> -->
-
     <v-menu :close-on-content-click="false">
       <template #activator="{ props }">
         <v-btn
