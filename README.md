@@ -2,6 +2,23 @@
 
 Aplicación para gestionar el inventario de una libreria.
 
+![image](https://github.com/user-attachments/assets/5c5a2e25-8f09-448f-bbdf-48e7db590c66)
+
+La aplicación base permite:
+
+1. Gestionar productos
+
+![image](https://github.com/user-attachments/assets/f47eba52-9e6a-4fd5-8165-5ae112c73a46)
+
+3. Gestión de categorias
+
+![image](https://github.com/user-attachments/assets/38e0d910-bb99-4d45-b236-c15cf78e90ed)
+
+5. Movimientos de inventario
+
+![image](https://github.com/user-attachments/assets/0cab8915-b707-44b8-9b4f-b69256ad1ecc)
+
+
 ## Tecnologias
 - **Vue 3**: Framework de JavaScript para construir interfaces de usuario.
 - **Vuetify 3**: Framework de componentes de Material Design para Vue.js.
