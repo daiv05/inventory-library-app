@@ -90,7 +90,8 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  function resetAuthData() {
+  async function resetAuthData() {
+    await router.push({ name: 'login' })
     user.value = {
       id: null,
       username: null,
@@ -98,7 +99,6 @@ export const useAuthStore = defineStore('auth', () => {
       role: null
     }
     token.value = null
-    router.push({ name: 'login' })
   }
 
   return { user, token, login, logout, setAuthData, isAuthenticated, resetAuthData }

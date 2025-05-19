@@ -50,14 +50,14 @@ onErrorCaptured((error) => {
   return true
 })
 
-watch(isAuthenticated, (newValue) => {
+watch(isAuthenticated, async (newValue) => {
   if (!newValue) {
     notification.alertToast({
       title: 'Sesión terminada',
       text: 'Por favor inicie sesión nuevamente',
       type: 'error'
     })
-    router.push({
+    await router.push({
       name: 'login'
     })
   }

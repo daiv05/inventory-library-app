@@ -68,7 +68,7 @@ _axios.interceptors.response.use(
         }
       }
       if (response.status === 403) {
-        router.push('/')
+        await router.push('/')
         alertErrorText = response.data.message || 'No tienes permisos para realizar esta acción'
       }
     } else if (request) {
