@@ -5,7 +5,7 @@
       <AppBaseCard title="Listado">
         <v-row class="mb-4">
           <v-col cols="12" class="d-flex justify-end">
-            <v-btn class="text-none" elevation="0" color="primary" @click="registerMovement()">
+            <v-btn class="text-none" elevation="0" color="secondary" @click="registerMovement()">
               Registrar movimiento
             </v-btn>
           </v-col>
@@ -94,10 +94,6 @@ const getMovements = async () => {
     }
     const { data, error } = await movementsServices.list(filters)
     if (error) {
-      alertToast({
-        text: error,
-        type: 'error'
-      })
       return
     }
     movements.value = data.data
@@ -120,10 +116,6 @@ const showMovementDetails = async (item, action) => {
     const { id } = item
     const { data, error } = await movementsServices.details(id)
     if (error) {
-      alertToast({
-        text: error,
-        type: 'error'
-      })
       return
     }
     selectedMovement.value = data.data
@@ -149,10 +141,6 @@ const crearMovimiento = async (item) => {
     }, {})
     const { error } = await movementsServices.create(dataItem)
     if (error) {
-      alertToast({
-        text: error,
-        type: 'error'
-      })
       return
     }
     alertToast({

@@ -24,7 +24,7 @@
           <v-btn
             v-if="showConfirmButton"
             class="text-none"
-            :color="dangerButton ? 'red' : 'primary'"
+            :color="dangerButton ? 'red' : 'secondary'"
             :text="confirmText"
             variant="tonal"
             @click="confirm"

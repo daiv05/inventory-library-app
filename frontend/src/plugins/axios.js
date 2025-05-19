@@ -40,25 +40,31 @@ _axios.interceptors.response.use(
         alertErrorText = response.data.message || 'Error en la petición, por favor revisa los datos'
       }
       if (response.status === 401) {
-        try {
-          const responseRefresh = await axios.post(
-            `${import.meta.env.VITE_VUE_APP_API_URL}/api/auth/refresh`,
-            {},
-            {
-              headers: {
-                Authorization: 'Bearer ' + token
+        if (router.currentRoute.value.name !== 'login') {
+          try {
+            const responseRefresh = await axios.post(
+              `${import.meta.env.VITE_VUE_APP_API_URL}/api/auth/refresh`,
+              {},
+              {
+                headers: {
+                  Authorization: 'Bearer ' + token
+                }
               }
+            )
+            if (response.status === 200) {
+              const newToken = responseRefresh.data.data.accessToken
+              setAuthData(newToken)
+              response.config.headers['Authorization'] = 'Bearer ' + newToken
+              return _axios(response.config)
             }
-          )
-          if (response.status === 200) {
-            const newToken = responseRefresh.data.accessToken
-            setAuthData(newToken)
-            response.config.headers['Authorization'] = 'Bearer ' + newToken
-            return _axios(response.config)
+          } catch (_error) {
+            resetAuthData()
+            alertErrorText = 'Sesión expirada, por favor inicie sesión nuevamente'
           }
-        } catch (_error) {
-          resetAuthData()
-          alertErrorText = 'Sesión expirada, por favor inicie sesión nuevamente'
+        } else {
+          alertErrorText =
+            response.data.message ||
+            'Ocurrió un error al intentar iniciar sesión, por favor intenta nuevamente'
         }
       }
       if (response.status === 403) {

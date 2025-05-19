@@ -5,7 +5,7 @@
       <AppBaseCard title="Listado">
         <v-row class="mb-4">
           <v-col cols="12" class="d-flex justify-end">
-            <v-btn class="text-none" elevation="0" color="primary" @click="createProduct()">
+            <v-btn class="text-none" elevation="0" color="secondary" @click="createProduct()">
               Registrar producto
             </v-btn>
           </v-col>
@@ -121,10 +121,6 @@ const getProducts = async () => {
     }
     const { data, error } = await productsService.list(filters)
     if (error) {
-      alertToast({
-        text: error,
-        type: 'error'
-      })
       return
     }
     products.value = data.data
@@ -147,10 +143,6 @@ const showProductDetails = async (item, action) => {
     const { id } = item
     const { data, error } = await productsService.details(id)
     if (error) {
-      alertToast({
-        text: error,
-        type: 'error'
-      })
       return
     }
     selectedProduct.value = data.data
@@ -183,10 +175,6 @@ const confirmDelete = async (item) => {
     const { id } = item
     const { error } = await productsService.destroy(id)
     if (error) {
-      alertToast({
-        text: error,
-        type: 'error'
-      })
       return
     }
     alertToast({
@@ -217,10 +205,6 @@ const editarProducto = async (item) => {
     }, {})
     const { error } = await productsService.edit(id, dataItem)
     if (error) {
-      alertToast({
-        text: error,
-        type: 'error'
-      })
       return
     }
     alertToast({
@@ -250,10 +234,6 @@ const crearProducto = async (item) => {
     }, {})
     const { error } = await productsService.create(dataItem)
     if (error) {
-      alertToast({
-        text: error,
-        type: 'error'
-      })
       return
     }
     alertToast({

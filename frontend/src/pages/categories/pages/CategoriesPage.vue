@@ -5,7 +5,7 @@
       <AppBaseCard title="Listado">
         <v-row class="mb-4">
           <v-col cols="12" class="d-flex justify-end">
-            <v-btn class="text-none" elevation="0" color="primary" @click="createCategory()">
+            <v-btn class="text-none" elevation="0" color="secondary" @click="createCategory()">
               Crear categoría
             </v-btn>
           </v-col>
@@ -104,7 +104,7 @@ const actionItem = ref(null)
 const loading = ref(false)
 const totalPages = ref(0)
 const page = ref(1)
-const itemsPerPage = ref(2)
+const itemsPerPage = ref(10)
 
 const showModalCategoryDetails = ref(false)
 const showModalCreateCategory = ref(false)
@@ -120,10 +120,6 @@ const getCategories = async () => {
     }
     const { data, error } = await categoriesServices.listData(filters)
     if (error) {
-      alertToast({
-        text: error,
-        type: 'error'
-      })
       return
     }
     categories.value = data.data
@@ -146,10 +142,6 @@ const showCategoryDetails = async (item, action) => {
     const { id } = item
     const { data, error } = await categoriesServices.details(id)
     if (error) {
-      alertToast({
-        text: error,
-        type: 'error'
-      })
       return
     }
     selectedCategory.value = data.data
@@ -182,10 +174,6 @@ const confirmDelete = async (item) => {
     const { id } = item
     const { error } = await categoriesServices.destroy(id)
     if (error) {
-      alertToast({
-        text: error,
-        type: 'error'
-      })
       return
     }
     alertToast({
@@ -216,10 +204,6 @@ const editarCategoria = async (item) => {
     }, {})
     const { error } = await categoriesServices.edit(id, dataItem)
     if (error) {
-      alertToast({
-        text: error,
-        type: 'error'
-      })
       return
     }
     alertToast({
@@ -249,10 +233,6 @@ const crearCategoria = async (item) => {
     }, {})
     const { error } = await categoriesServices.create(dataItem)
     if (error) {
-      alertToast({
-        text: error,
-        type: 'error'
-      })
       return
     }
     alertToast({
@@ -277,7 +257,6 @@ const createCategory = () => {
 }
 
 watch(page, () => {
-  console.log('page', page.value)
   getCategories();
 });
 

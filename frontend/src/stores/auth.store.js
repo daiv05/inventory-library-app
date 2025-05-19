@@ -25,14 +25,9 @@ export const useAuthStore = defineStore('auth', () => {
       const { data, error } = await authSevices.loginUser({ email, password })
       if (error) {
         hideLoader()
-        notification.alertToast({
-          title: 'Error!',
-          text: error,
-          type: 'error'
-        })
         return
       }
-      if (!data.accessToken) {
+      if (!data.data.accessToken) {
         hideLoader()
         notification.alertToast({
           title: 'Error!',
@@ -41,7 +36,7 @@ export const useAuthStore = defineStore('auth', () => {
         })
         return
       }
-      setAuthData(data.accessToken)
+      setAuthData(data.data.accessToken)
       hideLoader()
       notification.alertToast({
         title: 'Bienvenido!',
@@ -66,11 +61,6 @@ export const useAuthStore = defineStore('auth', () => {
       const { error } = await authSevices.logoutUser()
       if (error) {
         hideLoader()
-        notification.alertToast({
-          title: 'Error!',
-          text: error,
-          type: 'error'
-        })
         return
       }
       resetAuthData()
