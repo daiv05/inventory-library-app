@@ -20,11 +20,30 @@ class KardexController extends Controller
     public function index()
     {
         try {
-            $kardex = Kardex::all();
+            $kardex = Kardex::with(['producto', 'tipoMovimiento', 'usuarioRegistro'])
+                ->orderBy('created_at', 'desc')
+                ->get();
             $paginatedData = $this->paginate($kardex->toArray(), request('per_page', GeneralEnum::PAGINACION->value), request('page', 1));
             return $this->successPaginated('Kardex obtenidos exitosamente', $paginatedData, Response::HTTP_OK);
         } catch (\Exception $e) {
             return $this->error('Error al obtener los kardex', $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function show($id)
+    {
+        try {
+            $kardex = Kardex::with(['producto', 'tipoMovimiento', 'usuarioRegistro'])
+                ->where('id', $id)
+                ->first();
+
+            if (!$kardex) {
+                return $this->error('Kardex no encontrado', '', Response::HTTP_NOT_FOUND);
+            }
+
+            return $this->success('Kardex obtenido exitosamente', $kardex, Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return $this->error('Error al obtener el kardex', $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 

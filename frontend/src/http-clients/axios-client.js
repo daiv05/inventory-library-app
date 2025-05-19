@@ -21,13 +21,13 @@ export default async function axiosClient(config) {
       status = res.status
       return res
     })
-    .catch((error) => {
-      if (error.response) {
-        error = error.response.data
-      } else if (error.request) {
-        error = error.request
+    .catch((err) => {
+      if (err.response) {
+        error = err.response.data.message || 'Ocurrió un error inesperado'
+      } else if (err.request) {
+        error = err.request || 'No se pudo conectar al servidor, por favor intenta más tarde'
       } else {
-        error = error.message
+        error = err.message || 'Ocurrió un error inesperado'
       }
     })
 

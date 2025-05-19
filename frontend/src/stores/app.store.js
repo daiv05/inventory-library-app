@@ -4,13 +4,17 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useAppStore = defineStore('app', () => {
-  const isLoading = ref(false)
+  const isLoading = ref(0)
   const drawer = ref(true)
   const miniSidebar = ref(false)
   const darkMode = useLocalStorage('darkMode', false)
 
-  function setLoading(loading) {
-    isLoading.value = loading
+  function showLoader() {
+    isLoading.value++
+  }
+
+  function hideLoader() {
+    isLoading.value--
   }
 
   function toggleDrawer() {
@@ -23,7 +27,8 @@ export const useAppStore = defineStore('app', () => {
 
   return {
     isLoading,
-    setLoading,
+    showLoader,
+    hideLoader,
     drawer,
     toggleDrawer,
     miniSidebar,

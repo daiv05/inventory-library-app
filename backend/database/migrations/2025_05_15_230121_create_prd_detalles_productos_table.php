@@ -16,18 +16,14 @@ return new class extends Migration
             $table->foreignId('id_producto')
                 ->constrained('prd_productos')
                 ->onUpdate('cascade')
-                ->onDelete('restrict');
-            $table->foreignId('id_autor')
-                ->nullable()
-                ->constrained('lib_autores')
-                ->onUpdate('cascade')
-                ->onDelete('restrict');
+                ->onDelete('cascade');
             $table->foreignId('id_genero')
                 ->nullable()
                 ->constrained('lib_generos')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
             $table->string('codigo_producto')->unique();
+            $table->string('autor')->nullable();
             $table->string('color')->nullable();
             $table->string('dimensiones')->nullable();
             $table->string('peso')->nullable();

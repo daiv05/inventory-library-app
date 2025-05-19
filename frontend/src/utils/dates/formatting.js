@@ -16,7 +16,17 @@ dayjs.tz.setDefault('America/El_Salvador')
  * @param {string} formatOutput - Formato de salida
  * @returns {?string} Fecha convertida al formato especificado
  */
-const FormatDate = (value, formatOutput = 'DD/MM/YYYY') => {
+const formatCurrentDate = (formatOutput = 'DD/MM/YYYY') => {
+    return dayjs().format(formatOutput)
+}
+
+/**
+ * Función para convertir una fecha/hora a un formato específico
+ * @param {(string|Date)} value - Fecha a convertir
+ * @param {string} formatOutput - Formato de salida
+ * @returns {?string} Fecha convertida al formato especificado
+ */
+const formatDate = (value, formatOutput = 'DD/MM/YYYY') => {
   if (value) {
     return dayjs(value).format(formatOutput)
   } else return null
@@ -28,7 +38,7 @@ const FormatDate = (value, formatOutput = 'DD/MM/YYYY') => {
  * @param {string} formatString - Formato de salida
  * @returns {?string} Fecha convertida al formato especificado
  */
-const FormatDateToISO = (value, formatString = 'DD/MM/YYYY', withTime = false) => {
+const formatDateToISO = (value, formatString = 'DD/MM/YYYY', withTime = false) => {
   if (value) {
     const format = withTime ? 'YYYY-MM-DDTHH:mm:ss' : 'YYYY-MM-DD'
     return dayjs(value, formatString).format(format)
@@ -41,7 +51,7 @@ const FormatDateToISO = (value, formatString = 'DD/MM/YYYY', withTime = false) =
  * @param {string} formatString - Formato de la fecha a convertir
  * @returns {?Date} Objeto Date con la fecha convertida
  */
-const CreateDateFromFormat = (value, formatString = 'DD/MM/YYYY') => {
+const createDateFromFormat = (value, formatString = 'DD/MM/YYYY') => {
   if (value) {
     dayjs.extend(customParseFormat)
     return dayjs(value, formatString).toDate()
@@ -56,7 +66,7 @@ const CreateDateFromFormat = (value, formatString = 'DD/MM/YYYY') => {
  * @param {string} level - Nivel de comparación
  * @returns {?boolean} Booleano con el resultado de la comparación
  */
-const IsDateAfter = (firstDate, secondDate, formatString = 'DD/MM/YYYY', level = 'day') => {
+const isDateAfter = (firstDate, secondDate, formatString = 'DD/MM/YYYY', level = 'day') => {
   if (firstDate && secondDate) {
     dayjs.extend(customParseFormat)
     return dayjs(firstDate, formatString).isAfter(dayjs(secondDate, formatString), level)
@@ -71,7 +81,7 @@ const IsDateAfter = (firstDate, secondDate, formatString = 'DD/MM/YYYY', level =
  * @param {string} level - Nivel de comparación
  * @returns {?boolean} Booleano con el resultado de la comparación
  */
-const IsDateSame = (firstDate, secondDate, formatString = 'DD/MM/YYYY', level = 'day') => {
+const isDateSame = (firstDate, secondDate, formatString = 'DD/MM/YYYY', level = 'day') => {
   if (firstDate && secondDate) {
     dayjs.extend(customParseFormat)
     return dayjs(firstDate, formatString).isSame(dayjs(secondDate, formatString), level)
@@ -86,7 +96,7 @@ const IsDateSame = (firstDate, secondDate, formatString = 'DD/MM/YYYY', level = 
  * @param {string} level - Nivel de comparación
  * @returns {?boolean} Booleano con el resultado de la comparación
  */
-const IsDateSameOrAfter = (
+const isDateSameOrAfter = (
   firstDate,
   secondDate,
   formatString = 'DD/MM/YYYY',
@@ -109,7 +119,7 @@ const IsDateSameOrAfter = (
  * @param {string} inclusivity - Tipo de inclusividad ('[]', '[)', '(]', '()')
  * @returns {?boolean} Booleano con el resultado de la comparación
  */
-const IsDateBetween = (
+const isDateBetween = (
   mainDate,
   initialDate,
   finalDate,
@@ -129,11 +139,12 @@ const IsDateBetween = (
 }
 
 export {
-  FormatDate,
-  FormatDateToISO,
-  CreateDateFromFormat,
-  IsDateAfter,
-  IsDateSame,
-  IsDateSameOrAfter,
-  IsDateBetween
+  formatCurrentDate,
+  formatDate,
+  formatDateToISO,
+  createDateFromFormat,
+  isDateAfter,
+  isDateSame,
+  isDateSameOrAfter,
+  isDateBetween
 }

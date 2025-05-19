@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useAuthStore } from '@/stores/auth.store.js'
 import router from '../router'
-import alertToast from './notification'
+import notification from './notification'
 
 const _axios = axios.create({
   baseURL: import.meta.env.VITE_BASE_API_URL,
@@ -24,7 +24,7 @@ _axios.interceptors.request.use(
 _axios.interceptors.response.use(
   (response) => response,
   async (error) => {
-    const { token, setAuthData } = useAuthStore()
+    const { token, setAuthData, resetAuthData } = useAuthStore()
     const { response, request, _message } = error
     let alertErrorText = ':('
     if (response) {
@@ -32,13 +32,17 @@ _axios.interceptors.response.use(
         alertErrorText =
           response.data.message || 'Error en el servidor, por favor intenta más tarde'
       }
+      if (response.status === 422) {
+        alertErrorText =
+          response.data.message || 'Error en la petición, por favor revisa los datos ingresados'
+      }
       if (response.status === 400) {
         alertErrorText = response.data.message || 'Error en la petición, por favor revisa los datos'
       }
       if (response.status === 401) {
         try {
           const responseRefresh = await axios.post(
-            `${import.meta.env.VITE_VUE_APP_API_URL}/api` + '/refresh',
+            `${import.meta.env.VITE_VUE_APP_API_URL}/api/auth/refresh`,
             {},
             {
               headers: {
@@ -53,7 +57,7 @@ _axios.interceptors.response.use(
             return _axios(response.config)
           }
         } catch (_error) {
-          router.push('/login')
+          resetAuthData()
           alertErrorText = 'Sesión expirada, por favor inicie sesión nuevamente'
         }
       }
@@ -67,7 +71,7 @@ _axios.interceptors.response.use(
       alertErrorText = 'Ocurrió un error inesperado, por favor intenta más tarde'
     }
 
-    alertToast({
+    notification.alertToast({
       type: 'error',
       text: alertErrorText
     })

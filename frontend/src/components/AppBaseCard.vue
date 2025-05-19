@@ -18,7 +18,7 @@ defineProps({
     </v-card-item>
     <v-divider></v-divider>
     <v-card-text>
-      <div class="max-wch-base-card mx-auto">
+      <div class="mx-auto">
         <slot />
       </div>
     </v-card-text>

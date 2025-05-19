@@ -34,15 +34,33 @@
 
 <script setup>
 import { useAppStore } from '@/stores/app.store'
+import { useAuthStore } from '@/stores/auth.store'
 import { storeToRefs } from 'pinia'
 import { onErrorCaptured } from 'vue'
+import router from '@/router'
+import notification from '@/plugins/notification'
 const { miniSidebar } = storeToRefs(useAppStore())
+const { isAuthenticated } = storeToRefs(useAuthStore())
+
 const errorCaptured = ref([])
 onErrorCaptured((error) => {
   errorCaptured.value.push({
     error
   })
   return true
+})
+
+watch(isAuthenticated, (newValue) => {
+  if (!newValue) {
+    notification.alertToast({
+      title: 'Sesión terminada',
+      text: 'Por favor inicie sesión nuevamente',
+      type: 'error'
+    })
+    router.push({
+      name: 'login'
+    })
+  }
 })
 </script>
 

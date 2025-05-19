@@ -78,7 +78,16 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 3090,
     watch: {
-      usePolling: true,
+      usePolling: true
+    }
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    server: {
+      deps: {
+        inline: ['vuetify']
+      }
     }
   }
 })

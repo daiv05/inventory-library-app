@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '@/stores/auth.store.js'
-
+import dashboardRoutes from './dashboardRoutes'
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 const router = createRouter({
@@ -16,6 +16,7 @@ const router = createRouter({
           name: 'inicio',
           component: () => import('../pages/InicioPage.vue')
         },
+        ...dashboardRoutes,
         {
           path: '/:pathMatch(.*)*',
           name: 'not-found',

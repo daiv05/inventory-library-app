@@ -38,6 +38,26 @@ class CategoriaSeeder extends Seeder
                 'nombre' => 'Marcadores',
                 'descripcion' => 'Marcadores de diferentes tipos y colores.',
                 'id_estado' => 1,
+            ],
+            [
+                'nombre' => 'Cuadernos',
+                'descripcion' => 'Cuadernos de diferentes tamaños y estilos.',
+                'id_estado' => 1,
+            ],
+            [
+                'nombre' => 'Libretas',
+                'descripcion' => 'Libretas de diferentes tamaños y estilos.',
+                'id_estado' => 1,
+            ],
+            [
+                'nombre' => 'Carpetas',
+                'descripcion' => 'Carpetas de diferentes tamaños y estilos.',
+                'id_estado' => 1,
+            ],
+            [
+                'nombre' => 'Otros',
+                'descripcion' => 'Otros productos relacionados con la lectura y escritura.',
+                'id_estado' => 1,
             ]
         ];
 

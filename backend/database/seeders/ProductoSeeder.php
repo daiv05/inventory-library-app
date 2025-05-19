@@ -20,7 +20,8 @@ class ProductoSeeder extends Seeder
                 'id_estado' => 1,
                 'descripcion' => 'Descripción del producto 1',
                 'precio_actual' => 0,
-                'stock_actual' => 0
+                'stock_actual' => 0,
+                'codigo_producto' => 'P001',
             ],
             [
                 'nombre' => 'Producto 2',
@@ -28,7 +29,8 @@ class ProductoSeeder extends Seeder
                 'id_estado' => 1,
                 'descripcion' => 'Descripción del producto 2',
                 'precio_actual' => 0,
-                'stock_actual' => 0
+                'stock_actual' => 0,
+                'codigo_producto' => 'P002',
             ],
         ];
 
@@ -40,6 +42,12 @@ class ProductoSeeder extends Seeder
                 'descripcion' => $producto['descripcion'],
                 'precio_actual' => $producto['precio_actual'],
                 'stock_actual' => $producto['stock_actual'],
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+            DB::table('prd_detalles_productos')->insert([
+                'codigo_producto' => $producto['codigo_producto'],
+                'id_producto' => DB::getPdo()->lastInsertId(),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

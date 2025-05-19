@@ -9,7 +9,7 @@ const notificationList = ref([
       iconName: '',
       iconColor: '',
       iconBgColor: '',
-      imageSrc: 'maki.jpg'
+      imageSrc: 'avatar.png'
     },
     message: 'Es un hecho probado que un lector se distraerá',
     time: 'hace 2 min',
@@ -73,7 +73,7 @@ const notificationList = ref([
                 <component :is="noti.avatar.iconName" size="24" color="white" />
               </v-avatar>
               <v-avatar v-else size="40" class="mr-3">
-                <img :src="`/example-img/${noti.avatar.imageSrc}`" width="40" alt="Maki" />
+                <img :src="`/example-img/${noti.avatar.imageSrc}`" width="40" alt="Avatar" />
               </v-avatar>
             </template>
             <div class="d-inline-flex align-center justify-space-between w-100">

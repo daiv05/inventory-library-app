@@ -8,5 +8,4 @@ use App\Http\Controllers\Productos\GeneroController;
 
 Route::get('/estados', [EstadosController::class, 'index'])->name('estados.index');
 Route::get('/tipos-movimientos', [TipoMovimientoController::class, 'index'])->name('tipos-movimientos.index');
-Route::get('/autores', [AutorController::class, 'index'])->name('autores.index');
 Route::get('/generos', [GeneroController::class, 'index'])->name('generos.index');

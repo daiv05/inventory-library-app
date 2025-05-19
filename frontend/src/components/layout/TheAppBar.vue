@@ -78,7 +78,7 @@ const { user } = useAuthStore()
           height="300"
         >
           <v-avatar image size="35" border="md" color="secondary" class="mr-2" variant="flat">
-            <v-img src="@/assets/icons/maki.svg" alt="Makima" color="#ffffff" height="200" />
+            <v-img src="@/assets/icons/avatar.svg" alt="Avatar" color="#ffffff" height="200" />
           </v-avatar>
           <span class="text-h6 mr-2 text-secondary font-weight-bold"
             >{{ user.username }} <span class="font-weight-light">DV</span></span

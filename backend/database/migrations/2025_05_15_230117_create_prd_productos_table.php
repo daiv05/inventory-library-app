@@ -21,7 +21,7 @@ return new class extends Migration
                 ->constrained('ctl_estados')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
-            $table->string('nombre')->unique();
+            $table->string('nombre');
             $table->text('descripcion')->nullable();
             $table->decimal('precio_actual', 10, 2);
             $table->integer('stock_actual')->default(0);

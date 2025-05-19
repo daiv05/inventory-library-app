@@ -15,45 +15,46 @@ export const useAuthStore = defineStore('auth', () => {
   })
   const token = useStorage('token', null)
 
-  const { setLoading } = useAppStore()
+  const isAuthenticated = computed(() => !!token.value)
+
+  const { showLoader, hideLoader } = useAppStore()
 
   async function login(email, password) {
     try {
-      setLoading(true)
+      showLoader()
       const { data, error } = await authSevices.loginUser({ email, password })
-      console.log(data, error)
       if (error) {
-        setLoading(false)
+        hideLoader()
         notification.alertToast({
           title: 'Error!',
-          message: error,
+          text: error,
           type: 'error'
         })
         return
       }
-      if(!data.accessToken) {
-        setLoading(false)
+      if (!data.accessToken) {
+        hideLoader()
         notification.alertToast({
           title: 'Error!',
-          message: 'No se ha podido iniciar sesión',
+          text: 'No se ha podido iniciar sesión',
           type: 'error'
         })
         return
       }
       setAuthData(data.accessToken)
-      setLoading(false)
+      hideLoader()
       notification.alertToast({
         title: 'Bienvenido!',
-        message: 'Inicio de sesión exitoso',
+        text: 'Inicio de sesión exitoso',
         type: 'success'
       })
       await router.push({ name: 'inicio' })
     } catch (error) {
       console.error(error)
-      setLoading(false)
+      hideLoader()
       notification.alertToast({
         title: 'Error!',
-        message: error,
+        text: error,
         type: 'error'
       })
     }
@@ -61,29 +62,28 @@ export const useAuthStore = defineStore('auth', () => {
 
   async function logout() {
     try {
-      setLoading(true)
+      showLoader()
       const { error } = await authSevices.logoutUser()
       if (error) {
-        setLoading(false)
+        hideLoader()
         notification.alertToast({
           title: 'Error!',
-          message: error,
+          text: error,
           type: 'error'
         })
         return
       }
       resetAuthData()
-      setLoading(false)
+      hideLoader()
       notification.alertToast({
-        title: 'Adiós!',
-        message: 'Sesión cerrada exitosamente',
+        text: 'Sesión cerrada exitosamente',
         type: 'success'
       })
     } catch (error) {
-      setLoading(false)
+      hideLoader()
       notification.alertToast({
         title: 'Error!',
-        message: error,
+        text: error,
         type: 'error'
       })
     }
@@ -111,5 +111,5 @@ export const useAuthStore = defineStore('auth', () => {
     router.push({ name: 'login' })
   }
 
-  return { user, token, login, logout, setAuthData }
+  return { user, token, login, logout, setAuthData, isAuthenticated, resetAuthData }
 })

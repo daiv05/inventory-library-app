@@ -33,7 +33,7 @@
 <script setup>
 import { useAppStore } from '@/stores/app.store'
 import { storeToRefs } from 'pinia'
-import sidebarItems from '../navigation/sidebarItem'
+import sidebarItems from '../../navigation/sidebarItem'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-vue'
 
 const { drawer, miniSidebar } = storeToRefs(useAppStore())

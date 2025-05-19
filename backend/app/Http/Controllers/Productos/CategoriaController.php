@@ -16,11 +16,26 @@ class CategoriaController extends Controller
 {
     use ResponseTrait, PaginationTrait;
 
+    public function list()
+    {
+        try {
+            $categorias = Categoria::with('estado')
+                ->where('id_estado', '=', 1)
+                ->orderBy('created_at', 'asc')
+                ->get();
+            return $this->success('Categorias obtenidas exitosamente', $categorias, Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return $this->error('Error al obtener las categorias', $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
     public function index()
     {
         try {
-            $categorias = Categoria::all();
-            $paginatedData = $this->paginate($categorias->toArray(), request('per_page', GeneralEnum::PAGINACION->value), $request['page'] ?? 1);
+            $categorias = Categoria::with('estado')
+                ->orderBy('created_at', 'asc')
+                ->get();
+            $paginatedData = $this->paginate($categorias->toArray(), request('per_page', GeneralEnum::PAGINACION->value), request('page', 1));
             return $this->successPaginated('Categorias obtenidas exitosamente', $paginatedData, Response::HTTP_OK);
         } catch (\Exception $e) {
             return $this->error('Error al obtener las categorias', $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -66,7 +81,7 @@ class CategoriaController extends Controller
     public function show($id)
     {
         try {
-            $categoria = Categoria::findOrFail($id);
+            $categoria = Categoria::with('estado')->findOrFail($id);
             return $this->success('Categoria obtenida exitosamente', $categoria, Response::HTTP_OK);
         } catch (\Exception $e) {
             return $this->error('Error al obtener la categoria', $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -96,6 +111,7 @@ class CategoriaController extends Controller
             DB::beginTransaction();
             $categoria = Categoria::findOrFail($id);
             $categoria->update($request->only(['nombre', 'descripcion', 'id_estado']));
+            $categoria->save();
             DB::commit();
 
             return $this->success('Categoria actualizada exitosamente', $categoria, Response::HTTP_OK);
@@ -110,6 +126,10 @@ class CategoriaController extends Controller
         try {
             DB::beginTransaction();
             $categoria = Categoria::findOrFail($id);
+            // Verificar si la categoria tiene productos asociados
+            if ($categoria->productos()->exists()) {
+                return $this->error('No se puede eliminar la categoria porque tiene productos asociados', '', Response::HTTP_CONFLICT);
+            }
             $categoria->delete();
             DB::commit();
 
