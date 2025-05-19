@@ -17,7 +17,7 @@ dayjs.tz.setDefault('America/El_Salvador')
  * @returns {?string} Fecha convertida al formato especificado
  */
 const formatCurrentDate = (formatOutput = 'DD/MM/YYYY') => {
-    return dayjs().format(formatOutput)
+  return dayjs().format(formatOutput)
 }
 
 /**

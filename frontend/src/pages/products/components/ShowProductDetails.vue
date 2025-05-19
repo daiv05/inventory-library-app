@@ -52,31 +52,45 @@
             </v-list-item>
             <v-list-item v-if="selectedProduct.detalle_producto.codigo_producto">
               <v-list-item-title>Código de producto</v-list-item-title>
-              <v-list-item-subtitle>{{ selectedProduct.detalle_producto.codigo_producto }}</v-list-item-subtitle>
+              <v-list-item-subtitle>{{
+                selectedProduct.detalle_producto.codigo_producto
+              }}</v-list-item-subtitle>
             </v-list-item>
             <v-list-item v-if="selectedProduct.detalle_producto.color">
               <v-list-item-title>Color</v-list-item-title>
-              <v-list-item-subtitle>{{ selectedProduct.detalle_producto.color }}</v-list-item-subtitle>
+              <v-list-item-subtitle>{{
+                selectedProduct.detalle_producto.color
+              }}</v-list-item-subtitle>
             </v-list-item>
             <v-list-item v-if="selectedProduct.detalle_producto.dimensiones">
               <v-list-item-title>Dimensiones</v-list-item-title>
-              <v-list-item-subtitle>{{ selectedProduct.detalle_producto.dimensiones }}</v-list-item-subtitle>
+              <v-list-item-subtitle>{{
+                selectedProduct.detalle_producto.dimensiones
+              }}</v-list-item-subtitle>
             </v-list-item>
             <v-list-item v-if="selectedProduct.detalle_producto.peso">
               <v-list-item-title>Peso</v-list-item-title>
-              <v-list-item-subtitle>{{ selectedProduct.detalle_producto.peso }}</v-list-item-subtitle>
+              <v-list-item-subtitle>{{
+                selectedProduct.detalle_producto.peso
+              }}</v-list-item-subtitle>
             </v-list-item>
             <v-list-item v-if="selectedProduct.detalle_producto.material">
               <v-list-item-title>Material</v-list-item-title>
-              <v-list-item-subtitle>{{ selectedProduct.detalle_producto.material }}</v-list-item-subtitle>
+              <v-list-item-subtitle>{{
+                selectedProduct.detalle_producto.material
+              }}</v-list-item-subtitle>
             </v-list-item>
             <v-list-item v-if="selectedProduct.detalle_producto.isbn">
               <v-list-item-title>ISBN</v-list-item-title>
-              <v-list-item-subtitle>{{ selectedProduct.detalle_producto.isbn }}</v-list-item-subtitle>
+              <v-list-item-subtitle>{{
+                selectedProduct.detalle_producto.isbn
+              }}</v-list-item-subtitle>
             </v-list-item>
             <v-list-item v-if="selectedProduct.detalle_producto.anio_publicacion">
               <v-list-item-title>Año de publicación</v-list-item-title>
-              <v-list-item-subtitle>{{ selectedProduct.detalle_producto.anio_publicacion }}</v-list-item-subtitle>
+              <v-list-item-subtitle>{{
+                selectedProduct.detalle_producto.anio_publicacion
+              }}</v-list-item-subtitle>
             </v-list-item>
             <v-list-item v-if="selectedProduct.detalle_producto.autor">
               <v-list-item-title>Autor</v-list-item-title>
@@ -84,7 +98,9 @@
             </v-list-item>
             <v-list-item v-if="selectedProduct.detalle_producto.genero">
               <v-list-item-title>Género</v-list-item-title>
-              <v-list-item-subtitle>{{ selectedProduct.detalle_producto.genero.nombre }}</v-list-item-subtitle>
+              <v-list-item-subtitle>{{
+                selectedProduct.detalle_producto.genero.nombre
+              }}</v-list-item-subtitle>
             </v-list-item>
           </v-list>
         </v-col>

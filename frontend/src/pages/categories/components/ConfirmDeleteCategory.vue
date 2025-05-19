@@ -13,7 +13,10 @@
           <v-list class="pt-0">
             <v-list-item class="d-flex justify-center">
               <div>
-                <v-list-item-title class="text-lightText text-center" style="white-space: normal; text-overflow: unset; overflow: visible;">
+                <v-list-item-title
+                  class="text-lightText text-center"
+                  style="white-space: normal; text-overflow: unset; overflow: visible"
+                >
                   Esta acción es irreversible, la categoria se eliminará de forma permanente.
                 </v-list-item-title>
               </div>

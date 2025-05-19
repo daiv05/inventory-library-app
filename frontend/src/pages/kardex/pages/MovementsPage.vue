@@ -10,11 +10,7 @@
             </v-btn>
           </v-col>
         </v-row>
-        <AppDataTable
-          :headers="headers"
-          :items="movements"
-          :loading="loading"
-        >
+        <AppDataTable :headers="headers" :items="movements" :loading="loading">
           <template #item.actions="{ item }">
             <app-show-button @click="showMovementDetails(item, 'show')" />
           </template>
@@ -165,8 +161,8 @@ const registerMovement = () => {
 }
 
 watch(page, () => {
-  getMovements();
-});
+  getMovements()
+})
 
 await getMovements()
 </script>

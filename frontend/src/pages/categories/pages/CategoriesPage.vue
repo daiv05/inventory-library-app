@@ -10,11 +10,7 @@
             </v-btn>
           </v-col>
         </v-row>
-        <AppDataTable
-          :headers="headers"
-          :items="categories"
-          :loading="loading"
-        >
+        <AppDataTable :headers="headers" :items="categories" :loading="loading">
           <template #item.estado="{ item }">
             <app-status-chip :status="item.id_estado" />
           </template>
@@ -257,8 +253,8 @@ const createCategory = () => {
 }
 
 watch(page, () => {
-  getCategories();
-});
+  getCategories()
+})
 
 await getCategories()
 </script>

@@ -56,7 +56,7 @@ defineProps({
   dangerButton: {
     type: Boolean,
     default: false
-  },
+  }
 })
 
 const emit = defineEmits(['close', 'confirm'])

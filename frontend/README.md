@@ -1,4 +1,5 @@
 # Frontend
+
 Aplicación frontend desarrollada con Vue 3 y Vuetify 3.
 
 ## Estructura de carpetas
@@ -35,15 +36,19 @@ frontend
 ```
 
 ## Eslint y Prettier
-El proyecto utiliza Eslint y Prettier para el formateo de código. 
+
+El proyecto utiliza Eslint y Prettier para el formateo de código.
+
 ```bash
 npm run format # Formatear
 npm run lint # Verificar
 ```
 
 ## Cliente http
+
 El cliente http se encuentra en `src/http-clients/axios-client.js`.
-Se utiliza para realizar peticiones a la API. 
+Se utiliza para realizar peticiones a la API.
+
 ```javascript
 const loginUser = async (data) =>
   await httpClient(HttpRequestMethods.POST, `${PUBLIC_URL}/auth/login`, {}, data)

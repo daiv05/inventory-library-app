@@ -10,5 +10,5 @@ export default {
   3: {
     statusColor: 'orange-lighten-1',
     statusName: 'Sin stock'
-  },
+  }
 }

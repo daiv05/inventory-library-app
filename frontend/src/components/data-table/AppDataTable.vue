@@ -11,7 +11,7 @@
     <template #loading>
       <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
     </template>
-    <template v-for="(name) in Object.keys($slots)" #[name]="data">
+    <template v-for="name in Object.keys($slots)" #[name]="data">
       <slot :name="name" v-bind="data"></slot>
     </template>
   </v-data-table>
@@ -36,6 +36,6 @@ defineProps({
 
 <style>
 ::v-deep .v-data-table-header {
-  background-color: #DCDCDC;
+  background-color: #dcdcdc;
 }
 </style>

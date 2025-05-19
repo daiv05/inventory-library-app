@@ -21,7 +21,6 @@ const edit = async (id, data) =>
 const destroy = async (id) =>
   await httpClient(HttpRequestMethods.DELETE, `${API_URL}/inventario/categorias/${id}`)
 
-
 export default {
   list,
   listData,

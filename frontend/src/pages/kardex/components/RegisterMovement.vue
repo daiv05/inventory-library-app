@@ -123,7 +123,7 @@ const cantidadRules = [
 const precioUnitarioRules = [
   (v) => !!v || 'Precio unitario es requerido',
   (v) => v > 0 || 'Precio unitario debe ser mayor a 0',
-    (v) => v <= 1000000000 || 'Cantidad no puede ser mayor a 1000000000'
+  (v) => v <= 1000000000 || 'Cantidad no puede ser mayor a 1000000000'
 ]
 const observacionesRules = [(v) => !!v || 'Observaciones son requeridas']
 

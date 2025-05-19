@@ -10,11 +10,7 @@
             </v-btn>
           </v-col>
         </v-row>
-        <AppDataTable
-          :headers="headers"
-          :items="products"
-          :loading="loading"
-        >
+        <AppDataTable :headers="headers" :items="products" :loading="loading">
           <template #item.estado="{ item }">
             <app-status-chip :status="item.estado.id" />
           </template>
@@ -258,8 +254,8 @@ const createProduct = () => {
 }
 
 watch(page, () => {
-  getProducts();
-});
+  getProducts()
+})
 
 await getProducts()
 </script>
