@@ -18,7 +18,7 @@ const notificationList = ref([
   },
   {
     id: 2,
-    name: 'Verificación éxitosa',
+    name: 'Verificación exitosa',
     avatar: {
       icon: true,
       iconName: IconMdiTagSearchOutline,
@@ -56,44 +56,44 @@ const notificationList = ref([
       <div style="height: calc(100vh - 300px); max-height: 650px">
         <v-list class="py-0" lines="three">
           <v-list-item
-            v-for="noti in notificationList"
-            :key="noti.id"
-            :value="noti.id"
+            v-for="notification in notificationList"
+            :key="notification.id"
+            :value="notification.id"
             color="secondary"
             class="no-spacer"
           >
             <template #prepend>
               <v-avatar
-                v-if="noti.avatar.icon"
+                v-if="notification.avatar.icon"
                 size="40"
                 variant="flat"
-                :color="noti.avatar.iconBgColor"
+                :color="notification.avatar.iconBgColor"
                 class="mr-3"
               >
-                <component :is="noti.avatar.iconName" size="24" color="white" />
+                <component :is="notification.avatar.iconName" size="24" color="white" />
               </v-avatar>
               <v-avatar v-else size="40" class="mr-3">
-                <img :src="`/example-img/${noti.avatar.imageSrc}`" width="40" alt="Avatar" />
+                <img :src="`/example-img/${notification.avatar.imageSrc}`" width="40" alt="Avatar" />
               </v-avatar>
             </template>
             <div class="d-inline-flex align-center justify-space-between w-100">
-              <h6 class="text-subtitle-1 font-weight-regular">{{ noti.name }}</h6>
-              <span class="text-subtitle-2 text-medium-emphasis">{{ noti.time }}</span>
+              <h6 class="text-subtitle-1 font-weight-regular">{{ notification.name }}</h6>
+              <span class="text-subtitle-2 text-medium-emphasis">{{ notification.time }}</span>
             </div>
 
             <p class="text-subtitle-2 text-medium-emphasis mt-1">
-              {{ noti.message }}
+              {{ notification.message }}
             </p>
             <div class="my-3">
               <v-chip
-                v-if="noti.unread"
+                v-if="notification.unread"
                 size="small"
                 text="Unread"
                 color="error"
                 variant="tonal"
                 class="mr-2"
               />
-              <v-chip v-if="noti.new" size="small" text="New" color="warning" variant="tonal" />
+              <v-chip v-if="notification.new" size="small" text="New" color="warning" variant="tonal" />
             </div>
             <v-divider></v-divider>
           </v-list-item>

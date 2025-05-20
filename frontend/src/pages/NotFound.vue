@@ -23,11 +23,3 @@
     </v-row>
   </v-container>
 </template>
-
-<style scoped lang="scss">
-// .gradient-svg {
-//   background-image: linear-gradient(to right, rgb(var(--v-theme-lightprimary)), rgb(var(--v-theme-secondary)));
-//   border-radius: 25px;
-//   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-// }
-</style>

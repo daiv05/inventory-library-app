@@ -1,4 +1,4 @@
-# Bsckend
+# Backend
 Aplicación backend desarrollada con Laravel 11, MySQL y JWT Auth.
 
 ## Estructura de carpetas

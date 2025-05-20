@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex align-center">
-    <input id="darkmode-toggle" v-model="darkMode" type="checkbox" />
-    <label for="darkmode-toggle">
+    <input id="darkMode-toggle" v-model="darkMode" type="checkbox" />
+    <div>
       <!-- Sun icon -->
       <svg
         class="sun"
@@ -52,7 +52,7 @@
           ></path>
         </g>
       </svg>
-    </label>
+    </div>
   </div>
 </template>
 

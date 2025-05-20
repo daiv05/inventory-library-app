@@ -5,7 +5,7 @@ import { storeToRefs } from 'pinia'
 
 const authStore = useAuthStore()
 const { user } = storeToRefs(authStore)
-const cerrarSesion = async () => {
+const closeSession = async () => {
   await authStore.logout()
 }
 </script>
@@ -28,7 +28,7 @@ const cerrarSesion = async () => {
     >
       <v-divider></v-divider>
 
-      <div class="bg-lightprimary rounded-lg px-5 py-3 my-3">
+      <div class="bg-lightPrimary rounded-lg px-5 py-3 my-3">
         <div class="d-flex align-center justify-space-between">
           <h5 class="text-h5">Modo oscuro</h5>
           <AppSwitchTheme />
@@ -38,7 +38,7 @@ const cerrarSesion = async () => {
       <v-divider></v-divider>
 
       <v-list class="bottom-0 right-0 position-absolute">
-        <v-list-item color="secondary" rounded="md" @click="cerrarSesion()">
+        <v-list-item color="secondary" rounded="md" @click="closeSession()">
           <template #prepend>
             <icon-mdi-logout class="ml mr-8" />
           </template>

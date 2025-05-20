@@ -13,11 +13,11 @@ const DVLightTheme = {
     accent: '#FFAB91',
     warning: '#ffc107',
     error: '#f44336',
-    lightprimary: '#eef2f6',
-    lightsecondary: '#ede7f6',
-    lightsuccess: '#b9f6ca',
-    lighterror: '#f9d8d8',
-    lightwarning: '#fff8e1',
+    lightPrimary: '#eef2f6',
+    lightSecondary: '#ede7f6',
+    lightSuccess: '#b9f6ca',
+    lightError: '#f9d8d8',
+    lightWarning: '#fff8e1',
     lightText: '#616161',
     borderLight: '#d0d0d0',
     inputBorder: '#787878',
@@ -28,8 +28,8 @@ const DVLightTheme = {
     primary200: '#90caf9',
     secondary200: '#b39ddb',
     darkText: '#212121',
-    darkprimary: '#1565c0',
-    darksecondary: '#4527a0'
+    darkPrimary: '#1565c0',
+    darkSecondary: '#4527a0'
   }
 }
 
@@ -48,11 +48,11 @@ const DVDarkTheme = {
     accent: '#FFAB91',
     warning: '#ffc107',
     error: '#f44336',
-    lightprimary: '#E5DEEE',
-    lightsecondary: '#52456A',
-    lightsuccess: '#57B07E',
-    lighterror: '#A64949',
-    lightwarning: '#E5B663',
+    lightPrimary: '#E5DEEE',
+    lightSecondary: '#52456A',
+    lightSuccess: '#57B07E',
+    lightError: '#A64949',
+    lightWarning: '#E5B663',
     lightText: '#929292',
     borderLight: '#d0d0d0',
     inputBorder: '#787878',
@@ -63,8 +63,8 @@ const DVDarkTheme = {
     primary200: '#90caf9',
     secondary200: '#b39ddb',
     darkText: '#d0d0d0',
-    darkprimary: '#1565c0',
-    darksecondary: '#4527a0'
+    darkPrimary: '#1565c0',
+    darkSecondary: '#4527a0'
   }
 }
 

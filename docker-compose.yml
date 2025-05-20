@@ -21,12 +21,6 @@ services:
     restart: unless-stopped
     networks:
       - inventory-network
-    environment:
-      - DB_HOST=mysql
-      - DB_PORT=3306
-      - DB_DATABASE=${MYSQL_DATABASE}
-      - DB_USERNAME=${MYSQL_USER}
-      - DB_PASSWORD=${MYSQL_PASSWORD}
     working_dir: /var/www/html/backend
     volumes:
       - ./backend:/var/www/html/backend
