@@ -17,7 +17,7 @@ const sidebarItem = [
     to: '/productos/listado'
   },
   {
-    title: 'Categorias',
+    title: 'Categorías',
     icon: IconShapePlusOutline,
     to: '/productos/categorias'
   },

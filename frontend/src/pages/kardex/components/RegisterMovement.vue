@@ -133,11 +133,12 @@ const getTiposMovimientos = async () => {
   try {
     const { data } = await tiposMovimientosService.list()
     tiposMovimientos.value = data.data
-  } catch (_error) {
+  } catch (error) {
     alertToast({
       text: 'Error al cargar los tipos de movimientos',
       type: 'error'
     })
+    throw error
   } finally {
     hideLoader()
   }
@@ -162,11 +163,12 @@ const getProductos = async (query) => {
     }
     const { data } = await productsService.search(params)
     productos.value = data.data
-  } catch (_error) {
+  } catch (error) {
     alertToast({
       text: 'Error al cargar los productos',
       type: 'error'
     })
+    throw error
   } finally {
     loadingSearchProducts.value = false
   }

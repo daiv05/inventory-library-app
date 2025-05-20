@@ -15,8 +15,3 @@
     </v-col>
   </v-row>
 </template>
-
-<script setup>
-// Prueba del uso de <Suspense> y la pantalla de carga
-await new Promise((resolve) => setTimeout(resolve, 1500))
-</script>

@@ -121,11 +121,12 @@ const getCategories = async () => {
     categories.value = data.data
     totalPages.value = data.pagination.totalPages
     page.value = data.pagination.page
-  } catch (_error) {
+  } catch (error) {
     alertToast({
       text: 'Error al cargar las categorias',
       type: 'error'
     })
+    throw error
   } finally {
     loading.value = false
   }
@@ -148,11 +149,12 @@ const showCategoryDetails = async (item, action) => {
     } else {
       showModalCategoryDetails.value = true
     }
-  } catch (_error) {
+  } catch (error) {
     alertToast({
-      text: 'Error al cargar la categoria',
+      text: 'Error al cargar la categoría',
       type: 'error'
     })
+    throw error
   } finally {
     hideLoader()
   }
@@ -173,16 +175,17 @@ const confirmDelete = async (item) => {
       return
     }
     alertToast({
-      text: 'Categoria eliminado correctamente',
+      text: 'Categoría eliminado correctamente',
       type: 'success'
     })
     showModalDeleteCategory.value = false
     getCategories()
-  } catch (_error) {
+  } catch (error) {
     alertToast({
-      text: 'Error al eliminar el categoria',
+      text: 'Error al eliminar el categoría',
       type: 'error'
     })
+    throw error
   } finally {
     hideLoader()
   }
@@ -203,16 +206,17 @@ const editarCategoria = async (item) => {
       return
     }
     alertToast({
-      text: 'Categoria editada correctamente',
+      text: 'Categoría editada correctamente',
       type: 'success'
     })
     showModalEditCategory.value = false
     await getCategories()
-  } catch (_error) {
+  } catch (error) {
     alertToast({
-      text: 'Error al editar la categoria',
+      text: 'Error al editar la categoría',
       type: 'error'
     })
+    throw error
   } finally {
     hideLoader()
   }
@@ -237,11 +241,12 @@ const crearCategoria = async (item) => {
     })
     showModalCreateCategory.value = false
     getCategories()
-  } catch (_error) {
+  } catch (error) {
     alertToast({
-      text: 'Error al crear la categoria',
+      text: 'Error al crear la categoría',
       type: 'error'
     })
+    throw error
   } finally {
     hideLoader()
   }

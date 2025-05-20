@@ -23,7 +23,6 @@ export default async function httpClient(
   headers = {},
   responseType = HttpResponseTypes.JSON,
   baseURL = '',
-  client = 'axios'
 ) {
   if (!Object.values(HttpRequestMethods).includes(requestMethod)) {
     console.error('Request-Method no válido (httpClient)')
@@ -59,11 +58,5 @@ export default async function httpClient(
     data: data
   }
 
-  switch (client) {
-    case 'axios':
-      return await AxiosClient(config)
-    default:
-      console.error('Cliente no válido (httpClient)')
-      return
-  }
+  return await AxiosClient(config)
 }

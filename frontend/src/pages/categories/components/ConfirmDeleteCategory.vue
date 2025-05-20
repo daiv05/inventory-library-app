@@ -5,7 +5,7 @@
         <v-col cols="12">
           <v-list-item class="d-flex justify-center">
             <span class="text-h5 text-lightText font-weight-bold"
-              >¿Está seguro de que desea eliminar esta categoria?</span
+              >¿Está seguro de que desea eliminar esta categoría?</span
             >
           </v-list-item>
         </v-col>
@@ -17,7 +17,7 @@
                   class="text-lightText text-center"
                   style="white-space: normal; text-overflow: unset; overflow: visible"
                 >
-                  Esta acción es irreversible, la categoria se eliminará de forma permanente.
+                  Esta acción es irreversible, la categoría se eliminará de forma permanente.
                 </v-list-item-title>
               </div>
             </v-list-item>

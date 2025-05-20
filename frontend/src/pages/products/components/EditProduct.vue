@@ -266,11 +266,12 @@ const getEstados = async () => {
     }
     const { data } = await estadosService.list(params)
     estados.value = data.data
-  } catch (_error) {
+  } catch (error) {
     alertToast({
       text: 'Error al cargar los estados',
       type: 'error'
     })
+    throw error
   } finally {
     hideLoader()
   }
@@ -281,11 +282,12 @@ const getCategorias = async () => {
   try {
     const { data } = await categoriasService.list()
     categorias.value = data.data
-  } catch (_error) {
+  } catch (error) {
     alertToast({
       text: 'Error al cargar las categorías',
       type: 'error'
     })
+    throw error
   } finally {
     hideLoader()
   }
@@ -296,11 +298,12 @@ const getGeneros = async () => {
   try {
     const { data } = await generosService.list()
     generos.value = data.data
-  } catch (_error) {
+  } catch (error) {
     alertToast({
       text: 'Error al cargar los géneros',
       type: 'error'
     })
+    throw error
   } finally {
     hideLoader()
   }

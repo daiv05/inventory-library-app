@@ -95,11 +95,12 @@ const getMovements = async () => {
     movements.value = data.data
     totalPages.value = data.pagination.totalPages
     page.value = data.pagination.page
-  } catch (_error) {
+  } catch (error) {
     alertToast({
       text: 'Error al cargar los movimientos',
       type: 'error'
     })
+    throw error
   } finally {
     loading.value = false
   }
@@ -116,11 +117,12 @@ const showMovementDetails = async (item, action) => {
     }
     selectedMovement.value = data.data
     showModalMovementDetails.value = true
-  } catch (_error) {
+  } catch (error) {
     alertToast({
       text: 'Error al cargar los detalles del movimiento',
       type: 'error'
     })
+    throw error
   } finally {
     hideLoader()
   }
@@ -145,11 +147,12 @@ const crearMovimiento = async (item) => {
     })
     showModalCreateMovement.value = false
     getMovements()
-  } catch (_error) {
+  } catch (error) {
     alertToast({
       text: 'Error al crear el movimiento',
       type: 'error'
     })
+    throw error
   } finally {
     hideLoader()
   }

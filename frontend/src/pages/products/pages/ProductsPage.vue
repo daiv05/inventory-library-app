@@ -122,11 +122,12 @@ const getProducts = async () => {
     products.value = data.data
     totalPages.value = data.pagination.totalPages
     page.value = data.pagination.page
-  } catch (_error) {
+  } catch (error) {
     alertToast({
       text: 'Error al cargar los productos',
       type: 'error'
     })
+    throw error
   } finally {
     loading.value = false
   }
@@ -149,11 +150,12 @@ const showProductDetails = async (item, action) => {
     } else {
       showModalProductDetails.value = true
     }
-  } catch (_error) {
+  } catch (error) {
     alertToast({
       text: 'Error al cargar el producto',
       type: 'error'
     })
+    throw error
   } finally {
     hideLoader()
   }
@@ -179,11 +181,12 @@ const confirmDelete = async (item) => {
     })
     showModalDeleteProduct.value = false
     getProducts()
-  } catch (_error) {
+  } catch (error) {
     alertToast({
       text: 'Error al eliminar el producto',
       type: 'error'
     })
+    throw error
   } finally {
     hideLoader()
   }
@@ -209,11 +212,12 @@ const editarProducto = async (item) => {
     })
     showModalEditProduct.value = false
     getProducts()
-  } catch (_error) {
+  } catch (error) {
     alertToast({
       text: 'Error al editar el producto',
       type: 'error'
     })
+    throw error
   } finally {
     hideLoader()
   }
@@ -238,11 +242,12 @@ const crearProducto = async (item) => {
     })
     showModalCreateProduct.value = false
     getProducts()
-  } catch (_error) {
+  } catch (error) {
     alertToast({
       text: 'Error al crear el producto',
       type: 'error'
     })
+    throw error
   } finally {
     hideLoader()
   }

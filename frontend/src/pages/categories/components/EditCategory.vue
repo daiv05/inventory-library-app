@@ -105,11 +105,12 @@ const getEstados = async () => {
     }
     const { data } = await estadosService.list(params)
     estados.value = data.data
-  } catch (_error) {
+  } catch (error) {
     alertToast({
       text: 'Error al cargar los estados',
       type: 'error'
     })
+    throw error
   } finally {
     hideLoader()
   }
